@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "cloud-computing-project-um"
+version = "0.1.0"
+description = ""
+authors = ["L-ING <hlf01@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+sanic = "^24.6.0"
+aiohttp = "^3.11.6"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

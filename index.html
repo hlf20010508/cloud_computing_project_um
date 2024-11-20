@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing Project</title>
+    <script src="https://unpkg.com/axios@1.7.2/dist/axios.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Cloud Computing Project</h2>
+    <div id="upload-section">
+        <input type="file" id="file-input" />
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById("file-input");
+        const resultDiv = document.getElementById("result");
+
+        fileInput.addEventListener("change", () => {
+            const formData = new FormData();
+            const file = fileInput.files[0];
+            formData.append("file", file);
+
+            axios.post("./upload", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then(resp => {
+                resultDiv.outerHTML = resp.data
+            });
+        });
+    </script>
+</body>
+
+</html>

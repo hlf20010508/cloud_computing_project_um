@@ -1,0 +1,45 @@
+version: '3'
+services:
+  ccpu-uploader:
+    build:
+      context: .
+      dockerfile: uploader.dockerfile
+    container_name: ccpu-uploader
+    image: ccpu-uploader
+    environment:
+      - PORT=8000
+      - PROCESSOR_URL=http://ccpu-processor:8001
+      - RENDERER_URL=http://ccpu-renderer:8002
+    ports:
+      - 8000:8000
+    networks:
+      - ccpu
+
+  ccpu-processor:
+    build:
+      context: .
+      dockerfile: processor.dockerfile
+    container_name: ccpu-processor
+    image: ccpu-processor
+    environment:
+      - PORT=8001
+    ports:
+      - 8001:8001
+    networks:
+      - ccpu
+
+  ccpu-renderer:
+    build:
+      context: .
+      dockerfile: renderer.dockerfile
+    container_name: ccpu-renderer
+    image: ccpu-renderer
+    environment:
+      - PORT=8002
+    ports:
+      - 8002:8002
+    networks:
+      - ccpu
+
+networks:
+  ccpu:
